@@ -50,8 +50,27 @@ const modify = (req,res) =>{
 
 // destroy
 const destroy = (req,res) =>{
-  res.send(`Elimino il post con titolo ${req.params.title}`);
-}
+
+  const post = posts.find(post => post.title == req.params.title)
+
+  if (!post){
+ 
+   res.status(404)
+ 
+   return res.json({
+     message: `articolo non trovato`,
+     status: 404,
+     error: `not found`
+   })
+  }
+ 
+  posts.splice(posts.indexOf(post),1)
+  console.log(posts)
+  res.sendStatus(204)
+ };
+ 
+  
+
 
 module.exports = {
   index,
