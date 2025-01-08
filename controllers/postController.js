@@ -34,8 +34,23 @@ const show = (req,res) =>{
 
 // store
 const store = (req,res) => {
-  console.log(req.body);
-  res.send(`Creo un nuovo post nella lista post`);
+  // console.log(req.body);
+// creazione nuovo id
+  const id = posts.at(posts.length - 1).id +1;
+// creazione nuovo oggetto
+  const newPost = {
+    id,
+    title: req.body.title,
+    content: req.body.content,
+    image: req.body.image,
+    tags: req.body.tags
+  }
+
+  posts.push(newPost);
+
+  res.status(201);
+  res.json(posts);
+  
 };
 
 // update
