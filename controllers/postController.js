@@ -3,20 +3,19 @@ const posts = require('../data/posts.js');
 // index
 const index = (req,res) => {
 
-  let listaTaggedPosts= posts;
+  let listTaggedPosts= posts;
   let tag = req.query.tag;
 
   if(tag){
-    listaTaggedPosts = posts.filter(post => post.tags.includes(tag));
+    listTaggedPosts = posts.filter(post => post.tags.includes(tag));
   }
 
 
-  res.json(listaTaggedPosts);
+  res.json(listTaggedPosts);
 };
 
 // show
 const show = (req,res) =>{
- console.log(req.params);
  const post = posts.find(post => post.title == req.params.title)
 
  if (!post){
