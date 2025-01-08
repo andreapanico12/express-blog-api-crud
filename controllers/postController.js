@@ -55,7 +55,25 @@ const store = (req,res) => {
 
 // update
 const update = (req,res) =>{
-  res.send(`Modifico interamente il post con titolo ${req.params.title}`);
+  const title = req.params.title;
+  const post = posts.find(post => post.title == title);
+
+  if (!post){
+
+    res.status(404);
+    return res.json({
+      message: `articolo non trovato`,
+      status: 404,
+      error: `not found`
+    })
+  }
+  post.title =req.body.title;
+  post.content=req.body.content;
+  post.image=req.body.image;
+  post.tags= req.body.tags;
+  
+  res.json(post)
+  // res.send(`Modifico interamente il post con titolo ${req.params.title}`);
 }
 
 // modify
