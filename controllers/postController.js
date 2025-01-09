@@ -6,6 +6,9 @@ const index = (req,res) => {
   let listTaggedPosts= posts;
   let tag = req.query.tag;
 
+// test per errore 500
+  // funzioneTestErrore500() 
+
   if(tag){
     listTaggedPosts = posts.filter(post => post.tags.includes(tag));
   }
@@ -18,16 +21,16 @@ const index = (req,res) => {
 const show = (req,res) =>{
  const post = posts.find(post => post.title == req.params.title)
 
- if (!post){
+//  if (!post){
 
-  res.status(404)
+//   res.status(404)
 
-  return res.json({
-    message: `articolo non trovato`,
-    status: 404,
-    error: `not found`
-  })
- }
+//   return res.json({
+//     message: `articolo non trovato`,
+//     status: 404,
+//     error: `not found`
+//   })
+//  }
 
  res.json(post)
 };
@@ -71,7 +74,7 @@ const update = (req,res) =>{
   post.content=req.body.content;
   post.image=req.body.image;
   post.tags= req.body.tags;
-  
+
   res.json(post)
   // res.send(`Modifico interamente il post con titolo ${req.params.title}`);
 }
@@ -86,16 +89,16 @@ const destroy = (req,res) =>{
 
   const post = posts.find(post => post.title == req.params.title)
 
-  if (!post){
+  // if (!post){
  
-   res.status(404)
+  //  res.status(404)
  
-   return res.json({
-     message: `articolo non trovato`,
-     status: 404,
-     error: `not found`
-   })
-  }
+  //  return res.json({
+  //    message: `articolo non trovato`,
+  //    status: 404,
+  //    error: `not found`
+  //  })
+  // }
  
   posts.splice(posts.indexOf(post),1)
   console.log(posts)
