@@ -4,7 +4,7 @@ const postRouter = require('./routers/posts')
 const port = 3000;
 
 
-
+// body-parser
 app.use(express.json());
 
 app.use(`/imgs`, express.static(`public/imgs`));
